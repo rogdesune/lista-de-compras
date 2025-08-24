@@ -5,12 +5,12 @@ class Program
     static List<string> itens = new List<string>();
     static void Main()
     {
-        Menu();
         bool active = true;
         int option = 0;
 
-        while (true)
+        while (active)
         {
+            Menu();
             Console.WriteLine("\nSelecione uma opção:");
             Console.Write("\n>> ");
             int.TryParse(Console.ReadLine(), out option);
@@ -20,8 +20,15 @@ class Program
                 case 1:
                     AddItem();
                     break;
+                case 2:
+                    RemoveItem();
+                    break;
                 case 3:
                     ShowList();
+                    break;
+                case 4:
+                    Console.WriteLine("Programa fechado.");
+                    active = false;
                     break;
             }            
         }
@@ -34,6 +41,7 @@ class Program
         Console.WriteLine("2. Remover item");
         Console.WriteLine("3. Listar item");
         Console.WriteLine("4. Sair");
+        Console.WriteLine();
     }
     static void AddItem()
     {
@@ -44,7 +52,24 @@ class Program
         Console.WriteLine();
         ShowList();
     }
-    
+    static void RemoveItem()
+    {
+        int index;
+        Console.WriteLine("\nDigite o índice do item para ser removido:");
+        Console.WriteLine();
+        ShowList();
+        Console.Write("\n>> ");
+        int.TryParse(Console.ReadLine(), out index);
+        if (index < 0 || index >= itens.Count + 1)
+        {
+            Console.WriteLine($"Index inválido, por favor, entre um número entre 1 e {itens.Count}");
+        }
+        else
+        {
+            itens.RemoveAt(index);
+        }
+
+    }
     static void ShowList()
     {
         Console.WriteLine("Lista de itens:");
