@@ -51,6 +51,7 @@ class Program
         itens.Add(item);
         Console.WriteLine();
         ShowList();
+        Console.WriteLine();
     }
     static void RemoveItem()
     {
@@ -66,9 +67,11 @@ class Program
         }
         else
         {
-            itens.RemoveAt(index);
+            itens.RemoveAt(index - 1);
         }
-
+        Console.WriteLine();
+        ShowList();
+        Console.WriteLine();
     }
     static void ShowList()
     {
